@@ -24,6 +24,7 @@
 ### System info
 ---
 * `var appVersionAndBuild: String { get }`
+    
     ```swift
     let system = SystemInfo()
     //App version: 1.0.0
@@ -32,6 +33,7 @@
     ```
 
 * `var appVersion: String { get }`
+    
     ```swift
     let system = SystemInfo()
     //App version: 1.0.0
@@ -39,6 +41,7 @@
     ```
     
 * `var appBuild: String { get }`
+
     ```swift
     let system = SystemInfo()
     //App build: 1
@@ -48,6 +51,7 @@
 #### Localize
 ---
 * `static func string(key: String, bundle: Bundle = .main) -> String`
+
     ```swift
     Localize.string(key: "home_title")
     ```
@@ -58,11 +62,13 @@
 #### Collection
 ---
 * `var isNotEmpty: Bool { get }`
+
     ```swift
     let array = [String]()
     array.isNotEmpty
     ```
 * `subscript (safe index: Index) -> Element?`
+
     ```swift
     let array = ["John", "Mary"]
     array[safe: 0] // John
@@ -72,6 +78,7 @@
 #### Data
 ---
 * `func decoded<T: Decodable>(as type: T.Type, using decoder: JSONDecoder = .defaultDecoder()) throws -> T`
+
     ```swift
     struct People: Decodable { 
         ...
@@ -92,21 +99,28 @@ Default format options
     ```
 
 * `func day(calendar: Calendar = .current) -> Int`
+
     ```swift
     // returns a number
     Date().day()
     ```
+
 * `func toString(format: String = DateFormatType.serverShort.rawValue, 
                dateFormatter: DateFormatter = .defaultFormatter()) -> String`
+
     ```swift
     Date().toString() //it uses: .serverShort
     ```
+
 * `func toFormat(_ format: String = DateFormatType.serverShort.rawValue) -> Date?`
+
     ```swift
     //when we want to convert a date from Presentation to Infrastructure layer or vice versa
     Date().toFormat("yyyy")
     ```
+
 * `func dayWihSuffix(calendar: Calendar = .current) -> String`
+
     ```swift
     "2024-03-05"
         .toDate()
@@ -118,6 +132,7 @@ Default format options
 This is an importante usage because for consistence, it's expect to use thesame formatter in the whole app.
 
 * `static func defaultFormatter(dateFormat: String = DateFormatType.serverLong.rawValue) -> DateFormatter`
+
     ```swift
     DateFormatter.defaultFormatter()
     ```
@@ -125,6 +140,7 @@ This is an importante usage because for consistence, it's expect to use thesame 
 #### Dictionary
 ---
 * `func toData() -> Data?`
+
     ```swift
     let dict: [String: Any] = ["id": 1, "name": "John"]
     dict.toData()
@@ -132,6 +148,7 @@ This is an importante usage because for consistence, it's expect to use thesame 
 
 #### Encodable
 ---
+
 *   ```swift
     struct People: Encodable { 
         let id: Int
@@ -139,11 +156,14 @@ This is an importante usage because for consistence, it's expect to use thesame 
     ```
 
 * `func toData(encoder: JSONEncoder = .defaultEncoder()) -> Data?`
+
     ```swift
     let people = People(id: 1)
     people.toData()
     ```
+
 * `func toJson(encoder: JSONEncoder = .defaultEncoder()) -> [String: Any]?`
+
     ```swift
     let people = People(id: 1)
     people.toJson() //["id": 1]
@@ -152,6 +172,7 @@ This is an importante usage because for consistence, it's expect to use thesame 
 #### JSONDecoder
 ---
 * `static func defaultDecoder(dateFormatter: DateFormatter = .defaultFormatter()) -> JSONDecoder`
+
     ```swift
     JSONDecoder.defaultDecoder()
     ```
@@ -159,6 +180,7 @@ This is an importante usage because for consistence, it's expect to use thesame 
 #### JSONEncoder
 ---
 * `static func defaultEncoder(dateFormatter: DateFormatter = .defaultFormatter()) -> JSONEncoder`
+
     ```swift
     JSONEncoder.defaultDecoder()
     ```
@@ -166,6 +188,7 @@ This is an importante usage because for consistence, it's expect to use thesame 
 #### NSObject
 ---
 It's a good option when we want to register cells on TableViews.
+
 *   ```swift
     let tableView = UITableView(...)
     tableView.register(PeopleTableViewCell.self, 
@@ -174,6 +197,7 @@ It's a good option when we want to register cells on TableViews.
 
 * `static var className: String { get }`
     `var className: String { get }`
+    
     ```swift
     final class PeopleTableViewCell: NSObject {
         ...
@@ -184,7 +208,9 @@ It's a good option when we want to register cells on TableViews.
     let cell = PeopleTableViewCell(...)
     cell.className
     ```
+
 * `func asKind<T>(of: T.Type) -> T?`
+
     ```swift
     final class PeopleViewController: UIViewController { ... }
     let anyObject: NSObject = PeopleViewController()
@@ -193,33 +219,41 @@ It's a good option when we want to register cells on TableViews.
 
 #### String
 ---
+
 * `func removeCharacters(_ characters: [Character] = defaultCharactersToRemove) -> String`
+
     ```swift
     let word = "*4 . john"
     word.removeCharacters() //*4john
     //or
     word.removeCharacters([" ",".", "*", "4"]) //john
     ```
+
 * `func onlyNumbers() -> String`
+
     ```swift
     "1b2c3d".onlyNumbers() //"123"
     ```
+
 * `func toDate(format: String = DateFormatType.showShort.rawValue, dateFormatter: DateFormatter = .defaultFormatter()) -> Date?`
-* 1º option:
-    ```swift
-    "March, 2024".toDate()
-    ```
+
+    * 1º option:
+        ```swift
+        "March, 2024".toDate()
+        ```
     
-* 2º option:
-    ```swift
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd-MM-yyyy"
-    "25-03-2024".toDate(dateFormatter: formatter) //succeed
-    ```
+    * 2º option:
+        ```swift
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        "25-03-2024".toDate(dateFormatter: formatter) //succeed
+        ```
 
 #### UIColor
 ---
+
 * `convenience init?(hex: String)`
+
     ```swift
     let color = UIColor(hex: "#AABBCC") //succeed
     let color = UIColor(hex: "AABBCC") //succeed
@@ -227,6 +261,7 @@ It's a good option when we want to register cells on TableViews.
 
 #### UIFont
 ---
+
 * `static func custom(family: String, size: CGFloat, defaultFont: UIFont = defaultFont) -> UIFont`
 
     ```swift
@@ -236,24 +271,28 @@ It's a good option when we want to register cells on TableViews.
 #### UIView
 ---
 * `var isVisible: Bool { get set }`
+
     ```swift
     UIView().isVisible = true
     UIView().isHidden = true
     ```
 
 * `func clipAsCircle() -> UIView`
+
     ```swift
     let view = UIView()
     view.clipAsCircle()
     ```
 
 * `func cornerRadius(value: CGFloat) -> UIView`
+
     ```swift
     let view = UIView()
     view.cornerRadius(radius: 5.0)
     ```
 
 * `func cornerRadius(radius: CGFloat, cornerMask: CACornerMask) -> UIView`
+
     ```swift
     let view = UIView()
     view.cornerRadius(radius: 5.0, cornerMask: [.layerMaxXMaxYCorner])
@@ -262,6 +301,7 @@ It's a good option when we want to register cells on TableViews.
 * `func configureBorder(color: UIColor = UIColor.lightGray,
                                                    thickness: CGFloat = 0.5,
                                                    cornerRadius: CGFloat = 0) -> UIView`
+
     ```swift
     let view = UIView()
     view.configureBorder()
@@ -272,18 +312,21 @@ It's a good option when we want to register cells on TableViews.
                    shadowRadius: CGFloat = 2,
                    offset: CGSize = .init(width: -0.05, height: 0.05),
                    cornerRadius: CGFloat = 4) -> UIView`
+
     ```swift
     let view = UIView()
     view.addShadow()
     ```
 
 * `func addGradient(colors: [UIColor], flow: ColorFlow = .leftRight) -> UIView`
+
     ```swift
     let view = UIView()
     view.addGradient(colors: [.red, .blue, .orange])
     ```
 
 * `func centerInSuperview()`
+
     ```swift
     let view1 = UIView()
     let view2 = UIView()
@@ -293,6 +336,7 @@ It's a good option when we want to register cells on TableViews.
     ```
 
 * `func anchor(_ view: UIView, distance: CGFloat = 8)`
+
     ```swift
     let view1 = UIView()
     let view2 = UIView()
