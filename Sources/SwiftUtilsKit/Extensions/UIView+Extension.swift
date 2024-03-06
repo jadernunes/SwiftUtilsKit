@@ -11,26 +11,35 @@ public enum ColorFlow {
     case leftRight, rightLeft, topDown, bottomUp
 }
 
-extension UIView {
+public extension UIView {
+    
+    var isVisible: Bool {
+        set {
+            self.isHidden = !newValue
+        }
+        get {
+            return !self.isHidden
+        }
+    }
     
     /// Transform the view as a circle: *height / 2*
     /// - Returns: The view itself.
     @discardableResult
-    public func clipAsCircle() -> UIView {
+    func clipAsCircle() -> UIView {
         clipsToBounds = true
         layer.cornerRadius = frame.height / 2
         return self
     }
     
     @discardableResult
-    public func cornerRadius(value: CGFloat) -> UIView {
+    func cornerRadius(value: CGFloat) -> UIView {
         clipsToBounds = true
         layer.cornerRadius = value
         return self
     }
     
     @discardableResult
-    public func cornerRadius(radius: CGFloat, cornerMask: CACornerMask) -> UIView {
+    func cornerRadius(radius: CGFloat, cornerMask: CACornerMask) -> UIView {
         clipsToBounds = false
         layer.cornerRadius = radius
         layer.maskedCorners = cornerMask
@@ -38,9 +47,9 @@ extension UIView {
     }
     
     @discardableResult
-    public func configureBorder(color: UIColor = UIColor.lightGray,
-                                                   thickness: CGFloat = 0.5,
-                                                   cornerRadius: CGFloat = 0) -> UIView {
+    func configureBorder(color: UIColor = UIColor.lightGray,
+                         thickness: CGFloat = 0.5,
+                         cornerRadius: CGFloat = 0) -> UIView {
         layer.borderColor = color.cgColor
         layer.borderWidth = thickness
         layer.cornerRadius = cornerRadius
@@ -56,11 +65,11 @@ extension UIView {
     ///   - cornerRadius: Default is: *4*
     /// - Returns: The view itself
     @discardableResult
-    public func addShadow(color: UIColor = .black,
-                                             opacity: Float = 0.2,
-                                             shadowRadius: CGFloat = 2,
-                                             offset: CGSize = .init(width: -0.05, height: 0.05),
-                                             cornerRadius: CGFloat = 4) -> UIView  {
+    func addShadow(color: UIColor = .black,
+                   opacity: Float = 0.2,
+                   shadowRadius: CGFloat = 2,
+                   offset: CGSize = .init(width: -0.05, height: 0.05),
+                   cornerRadius: CGFloat = 4) -> UIView  {
         layer.shadowColor = color.cgColor
         layer.shadowOpacity = opacity
         layer.shadowOffset = offset
@@ -105,5 +114,32 @@ public extension UIView {
         case .bottomUp:
             return (start: CGPoint(x: 1.0, y: 1.0), end: CGPoint(x: 1.0, y: 0.0))
         }
+    }
+}
+
+// MARK: - Constraints
+
+public extension UIView {
+    
+    /// Set only: centerYAnchor & centerXAnchor
+    func centerInSuperview() {
+        translatesAutoresizingMaskIntoConstraints = false
+        guard let superview = superview else { return }
+        
+        NSLayoutConstraint.activate([
+            centerYAnchor.constraint(equalTo: superview.centerYAnchor),
+            centerXAnchor.constraint(equalTo: superview.centerXAnchor)
+        ])
+    }
+    
+    func anchor(_ view: UIView, distance: CGFloat = 8) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leftAnchor.constraint(equalTo: view.leftAnchor, constant: distance),
+            rightAnchor.constraint(equalTo: view.rightAnchor, constant: -distance),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: distance),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -distance),
+        ])
     }
 }

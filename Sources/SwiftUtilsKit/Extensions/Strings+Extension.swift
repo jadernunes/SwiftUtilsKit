@@ -5,6 +5,8 @@
 //  Created by Jader Nunes on 15/10/21.
 //
 
+import UIKit
+
 public extension String {
     
     /// This is the list that we use as a default value to remove(character:...) function
@@ -20,5 +22,10 @@ public extension String {
     
     func onlyNumbers() -> String {
         filter { $0.isNumber }
+    }
+    
+    func toDate(format: String = DateFormatType.showShort.rawValue, dateFormatter: DateFormatter = .defaultFormatter()) -> Date? {
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
     }
 }

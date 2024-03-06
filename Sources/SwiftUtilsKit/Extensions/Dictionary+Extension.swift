@@ -7,23 +7,7 @@
 
 import Foundation
 
-extension Dictionary {
-    
-    /// Remove keys and values where the values are NULL or empty when it's a String
-    /// - Returns: the dictionary itself.
-    @discardableResult mutating func removeNulls() -> Dictionary {
-        keys.forEach { key in
-            if let value = self[key],
-               let string = value as? String,
-               string.isEmpty {
-                removeValue(forKey: key)
-            } else {
-                removeValue(forKey: key)
-            }
-        }
-        
-        return self
-    }
+public extension Dictionary {
     
     func toData() -> Data? {
         do {
