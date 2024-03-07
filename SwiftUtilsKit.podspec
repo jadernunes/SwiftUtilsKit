@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name              = "SwiftUtilsKit"
-s.version           = "1.2.2"
+s.version           = "1.2.3"
 s.summary           = "Swift utils kit"
 s.homepage          = "https://github.com/jadernunes/SwiftUtilsKit.git"
 s.author            = "Jáder Nunes"

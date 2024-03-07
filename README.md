@@ -1,4 +1,34 @@
+![Cocoapods platforms](https://img.shields.io/cocoapods/p/PerformanceSuite)
+[![CocoaPod Version](https://img.shields.io/cocoapods/v/KIF.svg?style=flat)](https://cocoapods.org)
+<img src="https://img.shields.io/badge/swift5-compatible-green.svg?style=flat" alt="Swift 5.1 compatible" />
+
 # Swift Utils Kit
+
+## Installation
+
+### Cocoapods
+
+SwiftUtilsKit is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+
+```ruby
+pod 'SwiftUtilsKit', '1.2.2'
+```
+
+### Swift Package Manager
+
+1. File > Swift Packages > Add Package Dependency
+2. Add `https://github.com/jadernunes/SwiftUtilsKit.git`
+
+_OR_
+
+Update `dependencies` in `Package.swift`
+```swift
+dependencies: [
+    .package(url: "https://github.com/jadernunes/SwiftUtilsKit.git", .upToNextMajor(from: "1.2.2"))
+]
+```
 
 ## Topics
 * General
@@ -343,9 +373,3 @@ It's a good option when we want to register cells on TableViews.
     
     view1.anchor(view2)
     ```
-
-
-
-
-
-
