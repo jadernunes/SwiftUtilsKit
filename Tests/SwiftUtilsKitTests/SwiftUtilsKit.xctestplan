@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "E358B6EF-A69B-40E2-887A-E7469573066E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "SwiftUtilsKit",
+          "name" : "SwiftUtilsKit"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SwiftUtilsKitTests",
+        "name" : "SwiftUtilsKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}
