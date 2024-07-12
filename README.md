@@ -33,7 +33,7 @@ dependencies: [
 ## Topics
 * General
     * [System info](#systeminfo)
-    * [Localize](#localize)
+    * [Localize](#localize) //We'll be remove this function on v1.3.0
 * Extensions
     * [Collection](#collection)
     * [Data](#data)
@@ -80,6 +80,9 @@ dependencies: [
 
 #### Localize
 ---
+
+> [!WARNING]
+> We'll be remove this function on v1.3.0
 * `static func string(key: String, bundle: Bundle = .main) -> String`
 
     ```swift
